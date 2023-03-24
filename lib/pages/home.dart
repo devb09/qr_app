@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_app/pages/directions.dart';
 import 'package:qr_app/pages/mapa.dart';
 import 'package:qr_app/pages/maps_hitorial.dart';
+import 'package:qr_app/providers/db_provider.dart';
 import 'package:qr_app/providers/ui_provider.dart';
 import 'package:qr_app/widgets/custom_navbar.dart';
 import 'package:qr_app/widgets/scan_button.dart';
@@ -37,6 +38,8 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvider>(context);
     final int currentPage = uiProvider.selectedMenuOpt;
+
+    DBProvider.db.database;
 
     if (currentPage == 0) return MapaScreen();
 
