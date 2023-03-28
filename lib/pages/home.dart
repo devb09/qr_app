@@ -39,7 +39,9 @@ class _HomePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     final int currentPage = uiProvider.selectedMenuOpt;
 
-    DBProvider.db.database;
+    final tempScan = new ScanModel(valor: 'https://www.google.com');
+    // DBProvider.db.nuevoScan(tempScan);
+    
 
     if (currentPage == 0) return MapaScreen();
 

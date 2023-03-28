@@ -1,8 +1,10 @@
 import 'dart:io';
-
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+
+import 'package:qr_app/models/scan_model.dart';
+export 'package:qr_app/models/scan_model.dart';
 
 class DBProvider {
   static Database? _database;
@@ -30,7 +32,7 @@ class DBProvider {
       onOpen: (db) {},
       onCreate: (db, version) async {
         db.execute('''
-          CREATE TABLE scans(
+           CREATE TABLE Scans(
             id INTEGER PRIMARY KEY,
             tipo TEXT,
             valor TEXT
@@ -40,6 +42,34 @@ class DBProvider {
     );
   }
 
+  Future<int> nuevoScanRaw(ScanModel nuevoScan) async {
+    final id = nuevoScan.id;
+    final tipo = nuevoScan.tipo;
+    final valor = nuevoScan.valor;
+
+    final db = await database;
+
+    final res = await db!.rawInsert('''
+      INSERT INTO Scans( id, tipo, valor )
+        VALUES( $id, '$tipo', '$valor' )
+    ''');
+
+    return res;
+  }
+
+  Future<int> nuevoScan(ScanModel nuevoScan) async {
+    final db = await database;
+    final res = await db!.insert('Scans', nuevoScan.toJson());
+    print(res);
+    return res;
+  }
+
+  Future<ScanModel?> getScanById(int id) async {
+    final db = await _database;
+    final res = await db!.query('Scans', where: 'id = ?', whereArgs: [id]);
+
+    return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
+  }
   // Future<Database?> get database async {
   //   if (_database != null) return _database;
 
