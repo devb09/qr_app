@@ -13,17 +13,18 @@ import 'package:qr_app/widgets/scan_button.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-  final scanList = Provider.of<ScanListProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Historial'),
         actions: [
-          IconButton(onPressed: () {
-            scanList.borrarTodos();
-          }, icon: Icon(Icons.delete_forever))
+          IconButton(
+              onPressed: () {
+                Provider.of<ScanListProvider>(context, listen: false)
+                    .borrarTodos();
+              },
+              icon: Icon(Icons.delete_forever))
         ],
         elevation: 0,
       ),
