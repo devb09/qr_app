@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_app/pages/home.dart';
+import 'package:qr_app/pages/mapa.dart';
 import 'package:qr_app/providers/scan_list_provider.dart';
 import 'package:qr_app/providers/ui_provider.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         initialRoute: 'home',
         routes: {
           'home': (_) => HomeScreen(),
+          'mapa': (_) => MapaScreen(),
         },
         theme: ThemeData(primarySwatch: Colors.deepPurple),
       ),

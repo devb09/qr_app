@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_app/providers/scan_list_provider.dart';
+import 'package:qr_app/utils/utils.dart';
 
 class ScanButton extends StatelessWidget {
   const ScanButton({super.key});
@@ -16,13 +17,19 @@ class ScanButton extends StatelessWidget {
         // String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         //     '#3D8BEF', 'CANCEL', false, ScanMode.QR);
 
-        final barcodeScanRes = 'https://fh.com';
+        // final barcodeScanRes = 'https://fernando-herrera.com';
+        final barcodeScanRes = 'geo:6.173509, -75.334725';
 
-//como no se necesita re dibujar la funcion que daria error por eso el listen en false
+        if(barcodeScanRes == '-1') return;
+
+        //como no se necesita re dibujar la funcion que daria error por eso el listen en false
         final scanListProvider =
             Provider.of<ScanListProvider>(context, listen: false);
-        scanListProvider.nuevoScan(barcodeScanRes);
-        scanListProvider.nuevoScan('geo:12321.213,123232.3232');
+        // final nuevoScan = await scanListProvider.nuevoScan(barcodeScanRes);
+        final nuevoScan2 = await scanListProvider.nuevoScan(barcodeScanRes);
+
+        // launchUrlScan(context, nuevoScan);
+        launchUrlScan(context, nuevoScan2);
       },
       child: Icon(Icons.filter_center_focus),
     );
