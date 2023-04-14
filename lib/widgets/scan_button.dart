@@ -21,7 +21,6 @@ class ScanButton extends StatelessWidget {
         // final barcodeScanRes = 'geo:6.173509, -75.334725';
 
         if(barcodeScanRes == '-1') return;
-
         //como no se necesita re dibujar la funcion que daria error por eso el listen en false
         final scanListProvider =
             Provider.of<ScanListProvider>(context, listen: false);
