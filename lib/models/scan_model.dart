@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 class ScanModel {
+  //constructor con argumentos por nombre
   ScanModel({
     this.id,
     this.tipo,
